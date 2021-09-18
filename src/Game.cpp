@@ -74,6 +74,12 @@ void Game::Setup() {
 }
 
 void Game::Update() {
+    // TODO: IF we are too fast, waste some time until we reach the MILLISECS_PER_FRAME
+    while (!SDL_TICKS_PASSED(SDL_GetTicks(), millisecsPreviousFrame + MILLISECS_PER_FRAME));
+   
+    // Store the current frame time 
+    millisecsPreviousFrame = SDL_GetTicks();
+
     playerPosition.x += playerVelocity.x;
     playerPosition.y += playerVelocity.y;
 }
