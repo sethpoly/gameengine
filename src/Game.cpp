@@ -74,6 +74,7 @@ void Game::Setup() {
 }
 
 void Game::Update() {
+    // Cap framerate
     // If we are too fast, waste some time until we reach the MILLISECS_PER_FRAME
     int timeToWait = MILLISECS_PER_FRAME - (SDL_GetTicks() - millisecsPreviousFrame); 
     if (timeToWait > 0 && timeToWait <= MILLISECS_PER_FRAME) {
