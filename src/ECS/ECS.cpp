@@ -8,10 +8,10 @@ void System::AddEntityToSystem(Entity entity) {
     entities.push_back(entity);
 }
 
-// Glorified for loop.
+// Glorified for loop using a lambda function
 void System::RemoveEntityFromSystem(Entity entity) {
     entities.erase(std::remove_if(entities.begin(), entities.end(), [&entity](Entity other) {
-        return entity.GetId() == other.GetId();
+        return entity == other;
     }), entities.end());
 }
 
