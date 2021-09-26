@@ -92,7 +92,6 @@ void Game::Update() {
     // TODO:
     // MovementSystem.Update()
     // CollisionSystem.Update()
-
 }
 
 void Game::Render() {
