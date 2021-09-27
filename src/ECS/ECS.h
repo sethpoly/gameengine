@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <typeindex>
 #include <unordered_map>
+#include <set>
 
 const unsigned int MAX_COMPONENTS = 32;
 
@@ -142,21 +143,19 @@ class Registry {
 
         std::unordered_map<std::type_index, System*> systems;
 
+        // Set of entities to be added or removed in next update
+        std::set<Entity> entitiesToBeAdded;
+        std::set<Entity> entitiesToBeKilled;
+
     public:
         Registry() = default;
 
-        // TODO:
-        // CreateEntity()
-        // KillEntity()
+        Entity CreateEntity();
         //
         // AddComponent(Entity entity)
-        // RemoveComponent(Entity entity)
-        // HasComponent(Entity entity)
+        // GetComponent(Entity entity)
         //
         // AddSystem()
-        // RemoveSystem()
-        // HasSystem()
-        // GetSystem()
 };
 
 template <typename TComponent>
