@@ -4,6 +4,8 @@
 #include <bitset>
 #include <vector>
 #include <algorithm>
+#include <typeindex>
+#include <unordered_map>
 
 const unsigned int MAX_COMPONENTS = 32;
 
@@ -126,12 +128,35 @@ class Pool: public IPool {
 // adding systems and components to entities
 class Registry {
     private:
+        // Keep track of how many entities were added to our scene
         int numEntities = 0;
 
         // Vector of component pools, each contains all data for a certain component type
         // Vector index: component type id
         // Pool index: entity id
         std::vector<IPool*> componentPools;
+
+        // Vector of component signatures per entity, which component is turned "on" for the entity
+        // [Vector index = entity id]
+        std::vector<Signature> entityComponentSignatures;
+
+        std::unordered_map<std::type_index, System*> systems;
+
+    public:
+        Registry() = default;
+
+        // TODO:
+        // CreateEntity()
+        // KillEntity()
+        //
+        // AddComponent(Entity entity)
+        // RemoveComponent(Entity entity)
+        // HasComponent(Entity entity)
+        //
+        // AddSystem()
+        // RemoveSystem()
+        // HasSystem()
+        // GetSystem()
 };
 
 template <typename TComponent>
